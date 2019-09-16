@@ -47,7 +47,8 @@ var renderCloud = function (ctx, x, y, color, strcolor) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
   ctx.strokeStyle = strcolor;
   ctx.strokeRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
-}
+};
+
 // функция вывода загаловка окна
 var renderTitle = function (ctx, x, y, tbaseline, color, fsize, title) {
   ctx.textBaseline = tbaseline;
@@ -61,15 +62,18 @@ var renderText = function (ctx, x, y, baseline, color, text) {
   ctx.textBaseline = baseline;
   ctx.fillStyle = color;
   ctx.fillText(text, x, y);
-}
+};
+
 // функция вывода шкалы
 var renderStat = function (ctx, x, y, width, height) {
   ctx.fillRect(x, y, width, height);
-}
+};
+
 // функция расчета насыщености цвета для шкал других игроков
 var randomSaturation = function (int1, int2) {
   return (Math.ceil(Math.random() * (int2 - int1) * int2)) + '%';
-}
+};
+
 window.renderStatistics = function (ctx, names, times) {
   // Тень окна
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, CLOUD_SHADOW, CLOUD_STROKE);
