@@ -23,7 +23,6 @@ var BAR_MAX_HEIGHT = -150 + GAP + FONT_GAP;
 var TITLE_BASELINE = 'hanging';
 var TITLE_TEXT1 = 'Ура вы победили!';
 var TITLE_TEXT2 = 'Список результатов:';
-var TITLE_GAP = 20;
 var TITLE_COLOR = '#000';
 
 // параметры шрифта
@@ -49,7 +48,6 @@ var renderCloud = function (ctx, x, y, color, strcolor) {
   ctx.strokeStyle = strcolor;
   ctx.strokeRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 }
-
 // функция вывода загаловка окна
 var renderTitle = function (ctx, x, y, tbaseline, color, fsize, title) {
   ctx.textBaseline = tbaseline;
@@ -64,17 +62,14 @@ var renderText = function (ctx, x, y, baseline, color, text) {
   ctx.fillStyle = color;
   ctx.fillText(text, x, y);
 }
-
 // функция вывода шкалы
 var renderStat = function (ctx, x, y, width, height) {
   ctx.fillRect(x, y, width, height);
 }
-
 // функция расчета насыщености цвета для шкал других игроков
 var randomSaturation = function (int1, int2) {
   return (Math.ceil(Math.random() * (int2 - int1) * int2)) + '%';
 }
-
 window.renderStatistics = function (ctx, names, times) {
   // Тень окна
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, CLOUD_SHADOW, CLOUD_STROKE);
@@ -93,7 +88,7 @@ window.renderStatistics = function (ctx, names, times) {
     renderText(ctx, CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y + CLOUD_HEIGHT - DOWN_GAP - FONT_GAP - GAP + (BAR_MAX_HEIGHT * times[i]) / maxTime - GAP, DEFAULT_BASELINE, TEXT_COLOR, Math.round(times[i]));
     // Имя игроков
     renderText(ctx, CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y + CLOUD_HEIGHT - DOWN_GAP, DEFAULT_BASELINE, TEXT_COLOR, names[i]);
-    if (names[i] == 'Вы') {
+    if (names[i] === 'Вы') {
       // шкала игрока - красная
       ctx.fillStyle = PLAYER_BAR_COLOR;
     } else {
