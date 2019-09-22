@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Mono&subset=latin,cyrillic">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=PT+Mono&subset=latin,cyrillic">
   <link rel="stylesheet" href="css/main.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Код и Магия</title>
@@ -16,13 +17,17 @@
         86">
       <g id="wizard">
         <g id="wizard-coat">
-          <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86 23 67 19 67" />
+          <polygon
+            points="19 67 19 59 14 59 14 82 9 82 9 86 23 86 23 67 19 67" />
           <polygon points="19 59 19 67 23 67 23 86 48 86 48 54 19 54 19 59" />
         </g>
         <g id="wizard-head">
-          <polygon points="48 86 53 86 53 15 58 15 58 10 62 10 62 5 58 5 58 10 48 10 48 5 43 5 43 10 48 10 48 14 48 86"
+          <polygon
+            points="48 86 53 86 53 15 58 15 58 10 62 10 62 5 58 5 58 10 48 10 48 5 43 5 43 10 48 10 48 14 48 86"
             fill="#be3827" />
-          <polygon points="9 37 19 37 19 23 48 23 48 28 53 28 53 42 48 42 48 51 14 51 14 46 9 46 9 37" fill="#fbd868" />
+          <polygon
+            points="9 37 19 37 19 23 48 23 48 28 53 28 53 42 48 42 48 51 14 51 14 46 9 46 9 37"
+            fill="#fbd868" />
           <rect x="33" y="39" width="10" height="5" fill="#bec1c3" />
           <rect x="14" y="37" width="5" height="9" fill="#bec1c3" />
           <polygon
@@ -55,7 +60,8 @@
       <img src="img/title-site.png" alt="Code and magick">
     </h1>
     <p class="header-description">
-      Это игра, где главного героя, которым вам предстоит управлять и изменять заклинаниями окружающий мир зовут
+      Это игра, где главного героя, которым вам предстоит управлять и изменять
+      заклинаниями окружающий мир зовут
       Пендальф Синий.
       Вместе с ним вас ждет увлекательное приключение&hellip;
     </p>
@@ -68,7 +74,8 @@
   </header>
 
   <div class="overlay setup hidden">
-    <form class="setup-wizard-form" method="post" enctype="multipart/form-data" autocomplete="off">
+    <form class="setup-wizard-form" method="post" enctype="multipart/form-data"
+      autocomplete="off">
 
       <div class="setup-title">
         <div class="setup-user">
@@ -77,7 +84,8 @@
             <input type="file" name="avatar">
           </div>
           <label>
-            <input type="text" name="username" maxlength="25" required class="setup-user-name" value="Синий Пендальф" />
+            <input type="text" name="username" maxlength="25" required
+              class="setup-user-name" value="Синий Пендальф" />
           </label>
         </div>
 
@@ -86,8 +94,8 @@
 
 
       <div class="setup-artifacts-shop">
-        <div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50"
-            draggable="true">
+        <div class="setup-artifacts-cell"><img src="img/icon-star.png"
+            alt="Star" width="65" height="50" draggable="true">
         </div>
         <div class="setup-artifacts-cell"></div>
         <div class="setup-artifacts-cell"></div>
@@ -102,9 +110,11 @@
       <div class="setup-player">
         <div class="setup-wizard-appearance">
           <div class="setup-wizard-wrap">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86"
+              class="setup-wizard">
               <g class="wizard">
-                <use xlink:href="#wizard-coat" class="wizard-coat" style="fill: #6589a4"></use>
+                <use xlink:href="#wizard-coat" class="wizard-coat"
+                  style="fill: #6589a4"></use>
                 <use xlink:href="#wizard-head" class="wizard-head"></use>
                 <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
                 <use xlink:href="#wizard-hands" class="wizard-hands"></use>
@@ -159,14 +169,16 @@
   </div>
 
   <footer>
-    <p><a href="http://htmlacademy.ru" class="footer-link"><img src="img/htmlacademy-logo.png" alt="HTML Academy"
-          width="130">Сделано в HTML Academy</a>в 2017 году</p>
+    <p><a href="http://htmlacademy.ru" class="footer-link"><img
+          src="img/htmlacademy-logo.png" alt="HTML Academy" width="130">Сделано
+        в HTML Academy</a>в 2017 году</p>
   </footer>
 
   <template id="similar-wizard-template" style="display: none">
     <div class="setup-similar-item">
       <div class="setup-similar-content">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-similar-wizard">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86"
+          class="setup-similar-wizard">
           <g class="wizard">
             <use xlink:href="#wizard-coat" class="wizard-coat"></use>
             <use xlink:href="#wizard-head" class="wizard-head"></use>
@@ -203,6 +215,7 @@
 
   </script>
   <script src="js/stat.js"></script>
+  <script src="js/setup.js"></script>
   <script src="js/game.js"></script>
 
 </body>
