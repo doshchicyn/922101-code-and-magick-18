@@ -1,6 +1,12 @@
 'use strict';
 // находим окно с настройками персонажа
 var userMainDialog = document.querySelector('.setup');
+// находим блок с аватаркой персонажа
+var setupOpen = document.querySelector('.setup-open');
+// находим иконку аватарки персонажа
+var userLogo = setupOpen.querySelector('.setup-open-icon');
+// находим кнопку закрытия окна настроек персонажа
+var setupClose = userMainDialog.querySelector('.setup-close');
 // наъодим блок с аналогичными персонажами
 var userSimilarDialog = document.querySelector('.setup-similar');
 // находим объект(список), куда будем вставлять блоки с данными
@@ -18,7 +24,7 @@ var FIRST_NAMES = [
   'Люпита',
   'Вашингтон'
 ];
-// массим фамилий
+// массив фамилий
 var LAST_NAMES = [
   'да Марья',
   'Верон',
@@ -29,7 +35,7 @@ var LAST_NAMES = [
   'Нионго',
   'Ирвинг'
 ];
-// массим цветов одежды
+// массив цветов одежды
 var CLOTHES_COLOR = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
@@ -47,6 +53,30 @@ var COLOR = ['black',
 ];
 // количество блоков для магов
 var totalWizards = 4;
+
+// ОБРАБОТЧИКИ
+// Показать окно настроек при клике на аватарку
+setupOpen.addEventListener('click', function () {
+  userMainDialog.classList.remove('hidden');
+});
+// если фокус - по нажатию на Enter
+window.addEventListener('keydown', function (evt) {
+  if (userLogo.focus && evt.keyCode === 13) {
+    userMainDialog.classList.remove('hidden');
+  }
+});
+// Закрыть окно настроек при клике на Х
+setupClose.addEventListener('click', function () {
+  userMainDialog.classList.add('hidden');
+});
+// при нажатии ESC
+window.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 27) {
+    userMainDialog.classList.add('hidden');
+  }
+});
+
+// АВТОМАТИЗАЦИЯ
 // функция - показать блок с настройками мага
 var showSetup = function () {
   userMainDialog.classList.remove('hidden');
