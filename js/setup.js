@@ -4,7 +4,7 @@ var userMainDialog = document.querySelector('.setup');
 // находим блок с аватаркой персонажа
 var setupOpen = document.querySelector('.setup-open');
 // находим иконку аватарки персонажа
-var userLogo = setupOpen.querySelector('.setup-open-icon');
+// var userLogo = setupOpen.querySelector('.setup-open-icon');
 // находим кнопку закрытия окна настроек персонажа
 var setupClose = userMainDialog.querySelector('.setup-close');
 // наъодим блок с аналогичными персонажами
@@ -13,6 +13,8 @@ var userSimilarDialog = document.querySelector('.setup-similar');
 var similarListElement = document.querySelector('.setup-similar-list');
 // находим объект в шаблоне, который будем вставлять в список
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+// находит поле для ввода логина
+var userNameInput = userMainDialog.querySelector('.setup-user-name');
 // массив имен
 var FIRST_NAMES = [
   'Иван',
@@ -54,28 +56,70 @@ var COLOR = ['black',
 // количество блоков для магов
 var totalWizards = 4;
 
-// ОБРАБОТЧИКИ
-// Показать окно настроек при клике на аватарку
-setupOpen.addEventListener('click', function () {
-  userMainDialog.classList.remove('hidden');
-});
-// если фокус - по нажатию на Enter
-window.addEventListener('keydown', function (evt) {
-  if (userLogo.focus && evt.keyCode === 13) {
-    userMainDialog.classList.remove('hidden');
-  }
-});
-// Закрыть окно настроек при клике на Х
-setupClose.addEventListener('click', function () {
-  userMainDialog.classList.add('hidden');
-});
-// при нажатии ESC
-window.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 27) {
-    userMainDialog.classList.add('hidden');
-  }
-});
+// СЦЕНАРИИ
+// кнопка ESC
+var ESC_KEYCODE = 27;
+// кнопка ENTER
+var ENTER_KEYCODE = 13;
 
+// обработчик - закрытие окна
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+// функция - открыть окно настроек + доб события закрытия окна
+var openPopup = function () {
+  userMainDialog.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+// функция - закрыть окно настроек + удаление события закрытия окна
+var closePopup = function () {
+  userMainDialog.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+// событие по клику на аватар
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+// событие по ENTER при фокусе на аватарке
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+// событие по клику на крестик закрытия окна
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+// событие по ENTER при фокусе на крестике
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+// ВАЛИДАЦИЯ
+// валидация поля - ввод логина с проверкой длинны
+userNameInput.addEventListener('invalid', function () {
+  if (userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (userNameInput.validity.tooLong) {
+    userNameInput.setCustomValidity('Имя должно состоять максимум из 25-ти символов');
+  } else if (userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('Обязательное поле');
+  } else {
+    userNameInput.setCustomValidity('');
+  }
+});
+// валидация поля - при заполнении
+userNameInput.addEventListener('input', function (evt) {
+  var target = evt.target;
+  if (target.value.length < 2) {
+    target.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else {
+    target.setCustomValidity('');
+  }
+});
 // АВТОМАТИЗАЦИЯ
 // функция - показать блок с настройками мага
 var showSetup = function () {
@@ -117,6 +161,21 @@ var renderWizard = function (wizard) {
 
   return wizardElement;
 };
+// функция - смены цвета фаербола
+(function () {
+  var COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+  var setup = document.querySelector('.setup');
+  setup.classList.remove('hidden');
+  var wizard = setup.querySelector('.wizard');
+  var wizardCoat = wizard.querySelector('.wizard-coat');
+  var fireball = setup.querySelector('.setup-fireball-wrap');
+  wizardCoat.addEventListener('click', function () {
+    wizardCoat.style.fill = getRandomElement(COLORS);
+  });
+  fireball.addEventListener('click', function () {
+    fireball.style.backgroundColor = getRandomElement(COLORS);
+  });
+})();
 
 var renderWizards = function (wizards) {
   // объявляем вспомогательный контейнер - фрагмент
